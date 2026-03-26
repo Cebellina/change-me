@@ -1,41 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dist/css/styles.css">
-    <title>Welcome to PizzaNet!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Hut</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { line-height: 1.6; background: #fff8f0; color: #333; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      text-align: center;
+      color: white;
+      padding: 80px 20px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/pizza-bg.jpg') no-repeat center/cover;
+    }
+    .hero img { width: 130px; margin-bottom: 20px; border-radius: 10px; }
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; text-shadow: 2px 2px 5px rgba(0,0,0,0.6); }
+    .hero p { font-size: 1.3rem; max-width: 600px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+    /* Header */
+    .header { background: #d84315; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    .header .container { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+    .header__logo { width: 100px; }
+    .header__toggle { display: none; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; }
+    .header__nav ul { display: flex; list-style: none; gap: 25px; }
+    .header__nav a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+    .header__nav a:hover { color: #ffcc80; }
+
+    /* Mobil nav */
+    @media (max-width: 768px) {
+      .header__toggle { display: block; }
+      .header__nav { display: none; flex-direction: column; background: #d84315; position: absolute; top: 60px; right: 0; width: 200px; padding: 20px; border-radius: 0 0 10px 10px; }
+      .header__nav.active { display: flex; }
+      .header__nav ul { flex-direction: column; gap: 15px; }
+    }
+
+    /* Main container */
+    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+    /* Meny */
+    .menu h2 { font-size: 2.5rem; color: #bf360c; margin-bottom: 15px; }
+    .menu p { font-size: 1.2rem; margin-bottom: 25px; }
+
+    /* Formulär */
+    .order-form {
+      background: #fff3e0;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 7px; font-weight: 600; color: #bf360c; }
+    input { width: 100%; padding: 12px; border: 1px solid #ffab91; border-radius: 8px; font-size: 1rem; transition: border 0.3s; }
+    input:focus { border-color: #d84315; outline: none; box-shadow: 0 0 5px rgba(216,67,21,0.5); }
+
+    .btn-primary {
+      background: #d84315;
+      color: white;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #bf360c; transform: scale(1.05); }
+
+    /* Order meddelande */
+    .order-message {
+      display: none;
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4caf50;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .order-message.show { display: block; animation: fadeout 3s forwards; }
+
+    @keyframes fadeout {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+
+    /* Pizza animation */
+    .pizza-fly {
+      position: absolute;
+      width: 80px;
+      z-index: 100;
+      animation: flyPizza 2s forwards;
+    }
+    @keyframes flyPizza {
+      0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { top: -50px; left: 90%; transform: translate(-50%, -50%) scale(0.3) rotate(360deg); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+<!-- Hero -->
 <header class="hero">
-    <h1>Welcome to PizzaNet!</h1>
-    <p>Your one-stop shop for all things pizza. Explore our menu, order online, and enjoy delicious pizza delivered right to your door.</p>
+  <img src="images/logo.png" alt="PizzaHut Logo">
+  <h1>Welcome to PizzaHut!</h1>
+  <p>Your one-stop shop for all things pizza. Explore our menu, order online, and enjoy delicious pizza delivered right to your door.</p>
+</header>
+<header class="header">
+  <div class="container">
+    <img src="images/logo.png" class="header__logo" alt="PizzaHut Logo">
+    <button class="header__toggle">☰</button>
+    <nav class="header__nav">
+      <ul>
+        <li><a href="#">Hem</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main class="container">
-<section class="menu">
+  <section class="menu">
     <h2>Our Menu</h2>
-        <p>Check out our delicious selection of pizzas, pasta, and drinks.</p>
-            
-<form class="order-form">
-<div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" id="name">
-</div>
+    <p>Check out our delicious selection of pizzas, pasta, and drinks.</p>
     
-<div class="form-group">
-    <label for="address">Address:</label>
-    <input type="text" id="address">
-</div>
-                
-<div class="form-group">
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone">
-</div>
-</form>
-                
-<button type="button" class="btn-primary">Click Me</button>
+    <form class="order-form" id="orderForm">
+      <div class="order-message" id="orderMessage">Thank you! Your order has been placed.</div>
 
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="order">Order:</label>
+        <input type="text" id="order" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required>
+      </div>
+      
+      <button type="submit" class="btn-primary">Place Order</button>
+    </form>
+  </section>
 </main>
+<script>
+  // Hamburger toggle
+  const toggle = document.querySelector('.header__toggle');
+  const nav = document.querySelector('.header__nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('active'));
+  const form = document.getElementById('orderForm');
+  const message = document.getElementById('orderMessage');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Visa meddelande
+    message.classList.add('show');
+
+    // Skapa flygande pizza
+    const pizza = document.createElement('img');
+    pizza.src = 'images/pizza.png'; // en liten pizzabild
+    pizza.classList.add('pizza-fly');
+    document.body.appendChild(pizza);
+
+    // Ta bort pizza efter animation
+    pizza.addEventListener('animationend', () => pizza.remove());
+
+    // Rensa formulär
+    form.reset();
+
+    // Ta bort meddelande efter 3 sek
+    setTimeout(() => message.classList.remove('show'), 3000);
+  });
+</script>
 </body>
 </html>
