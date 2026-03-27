@@ -29,7 +29,7 @@
     .header__nav a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
     .header__nav a:hover { color: #ffcc80; }
 
-    /* Mobil nav */
+    /* Mobilvänlig */
     @media (max-width: 768px) {
       .header__toggle { display: block; }
       .header__nav { display: none; flex-direction: column; background: #d84315; position: absolute; top: 60px; right: 0; width: 200px; padding: 20px; border-radius: 0 0 10px 10px; }
@@ -93,18 +93,6 @@
       80% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
       100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
     }
-
-    /* Pizza animation */
-    .pizza-fly {
-      position: absolute;
-      width: 80px;
-      z-index: 100;
-      animation: flyPizza 2s forwards;
-    }
-    @keyframes flyPizza {
-      0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      100% { top: -50px; left: 90%; transform: translate(-50%, -50%) scale(0.3) rotate(360deg); opacity: 0; }
-    }
   </style>
 </head>
 <body>
@@ -131,7 +119,8 @@
 <main class="container">
   <section class="menu">
     <h2>Our Menu</h2>
-    <p>Check out our delicious selection of pizzas, pasta, and drinks.</p>
+    <p>This is Pizza Hut's online ordering platform, made by Pizza Hut and The Santa Cruz Operations.</p>
+    <p>Check out our delicious selection of pizzas, pasta, and drinks and feel free to place your order below.</p>
     
     <form class="order-form" id="orderForm">
       <div class="order-message" id="orderMessage">Thank you! Your order has been placed.</div>
